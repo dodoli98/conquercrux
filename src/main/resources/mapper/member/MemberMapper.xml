@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.conquercrux.mapper.member.MemberMapper">
+
+    <!--  아이디를 통해 회원정보 조회  -->
+    <select id="readMember" resultType="com.example.conquercrux.domain.Member">
+        SELECT * FROM member WHERE member_id = #{member_id}
+    </select>
+
+
+    <!-- 아이디를 제외한 모든 정보를 수정 가능하게 변경된 Update 쿼리 -->
+    <update id="updateMember" parameterType="com.example.conquercrux.domain.Member">
+        UPDATE member
+        SET member_password = #{member_password},
+        member_name = #{member_name},
+        member_email = #{member_email},
+        member_phone_number = #{member_phone_number},
+        member_address = #{member_address}
+        WHERE member_id = #{member_id}
+    </update>
+
+
+    <!-- 아이디값을 통해 회원정보 삭제 -->
+    <delete id="deleteMember" parameterType="com.example.conquercrux.domain.Member">
+        DELETE FROM member WHERE member_id = #{member_id}
+    </delete>
+
+    <!-- member 테이블의 모든 레코드 조회 -->
+    <select id="getMember" parameterType="com.example.conquercrux.domain.Member">
+        <![CDATA[
+            SELECT * FROM member
+        ]]>
+    </select>
+
+</mapper>

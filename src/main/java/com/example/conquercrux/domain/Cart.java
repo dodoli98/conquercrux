@@ -10,7 +10,7 @@ public class Cart {
 
     private Product product;
 
-    private User user;
+    private Member member;
 
     private Map<Product, Integer> productsAndQuantities;
 

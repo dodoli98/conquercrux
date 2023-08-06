@@ -11,7 +11,7 @@ public class Order {
 
     private Cart cart;
 
-    private User user;
+    private Member member;
 
     private boolean payment_status;
 
