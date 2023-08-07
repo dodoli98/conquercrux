@@ -17,8 +17,4 @@ public class Order {
 
     private Date order_date;
 
-    public Map<Product, Integer> getProductsAndQuantities() {
-        return cart.getProductsAndQuantities();
-    }
-
 }

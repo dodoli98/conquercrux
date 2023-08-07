@@ -53,6 +53,17 @@ class ProductMapperTest {
     }
 
     @Test
+    public void testUpdateProduct() {
+
+        Product product = mapper.readProduct(2L);
+
+        product.setProduct_name("업데이트");
+        product.setProduct_price(20);
+
+        mapper.updateProduct(product);
+    }
+
+    @Test
     public void testDeleteProduct() {
         log.info("deleted product = {}", mapper.deleteProduct(1L));
     }

@@ -18,7 +18,7 @@ class MemberRegisterMapperTest {
     public void testMemberRegister() {
         Member member = new Member();
 
-        member.setMember_id("1234");
+        member.setMember_id("dodo");
         member.setMember_password("1234");
         member.setMember_name("홍길동");
         member.setMember_email("dodo@naber.com");
