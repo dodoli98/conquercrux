@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.conquercrux.mapper.order.OrderMapper">
+
+    <insert id="createOrder" parameterType="com.example.conquercrux.domain.Order">
+        <selectKey keyProperty="order_id" order="BEFORE" resultType="long">
+            SELECT NEXTVAL('SEQ_ORDER_ID') FROM dual
+        </selectKey>
+
+        INSERT INTO orders (order_id, order_date, member_id, total_amount)
+        VALUES (#{order_id}, #{order_date}, #{member_id}, #{total_amount})
+    </insert>
+
+    <!--  아이디를 통해 주문 정보 조회  -->
+    <select id="readOrder" resultType="com.example.conquercrux.domain.Order">
+        SELECT * FROM orders WHERE order_id = #{order_id}
+    </select>
+
+    <!-- 아이디값을 통해 주문 삭제 -->
+    <delete id="deleteOrder" parameterType="com.example.conquercrux.domain.Order">
+        DELETE FROM orders WHERE order_id = #{order_id}
+    </delete>
+
+
+</mapper>

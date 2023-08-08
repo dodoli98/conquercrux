@@ -25,5 +25,41 @@ public class CartMapperTest {
         cartMapper.addToCart(cart);
     }
 
+    @Test
+    public void testReadItem() {
+        log.info("read item = {}", cartMapper.readCartItem("ProductA"));
+    }
+
+    @Test
+    public void testUpdateItemPrice() {
+        Cart cart = cartMapper.readCartItem("ProductA");
+
+        cart.setProduct_price(100);
+
+        log.info("update price = {}", cartMapper.updateCartItem(cart));
+    }
+
+    @Test
+    public void testUpdateItemQuantity() {
+        Cart cart = cartMapper.readCartItem("ProductA");
+
+        cart.setProduct_quantity(10);
+
+        log.info("update price = {}", cartMapper.updateCartItem(cart));
+    }
+
+    @Test
+    public void testDeleteItem() {
+        log.info("delete item = {}", cartMapper.deleteCartItem("1234", "ProductA"));
+    }
+
+
+    @Test
+    public void testGetCartItemsByMemberId() {
+        log.info(cartMapper.getCartItemsByMemberId("1234").toString());
+
+    }
+
+
 
 }

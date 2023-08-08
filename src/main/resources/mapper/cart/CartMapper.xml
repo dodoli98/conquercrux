@@ -9,6 +9,12 @@
         VALUES (#{member_id}, #{product_name}, #{product_price}, #{product_quantity})
     </insert>
 
+    <!-- 카트 레코드 읽어오기 -->
+    <select id="readCartItem" resultType="com.example.conquercrux.domain.Cart" parameterType="java.lang.String">
+        SELECT * FROM cart
+        WHERE product_name = #{product_name}
+    </select>
+
     <!-- 카트 아이템 업데이트 -->
     <update id="updateCartItem" parameterType="com.example.conquercrux.domain.Cart">
         UPDATE cart
