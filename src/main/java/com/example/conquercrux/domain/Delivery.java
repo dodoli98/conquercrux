@@ -6,7 +6,9 @@ import lombok.Data;
 public class Delivery {
     private Long delivery_id;
 
-    private String delivery_address;
+    private String member_id;
+
+    private String member_address;
 
     private String delivery_status;
 

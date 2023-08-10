@@ -3,10 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.conquercrux.mapper.cart.CartMapper">
 
-    <!-- 카트에 제품 추가 -->
+    <!-- 카트에 제품 추가  -->
     <insert id="addToCart" parameterType="com.example.conquercrux.domain.Cart">
-        INSERT INTO cart (member_id, product_name, product_price, product_quantity)
-        VALUES (#{member_id}, #{product_name}, #{product_price}, #{product_quantity})
+        INSERT INTO cart (member_id, product_name, product_price, product_quantity, product_stock)
+        SELECT #{member_id}, #{product_name}, product_price, #{product_quantity}, product_stock
+        FROM product WHERE product_name = #{product_name}
     </insert>
 
     <!-- 카트 레코드 읽어오기 -->
@@ -18,7 +19,7 @@
     <!-- 카트 아이템 업데이트 -->
     <update id="updateCartItem" parameterType="com.example.conquercrux.domain.Cart">
         UPDATE cart
-        SET product_price = #{product_price}, product_quantity = #{product_quantity}
+        SET product_quantity = #{product_quantity}
         WHERE member_id = #{member_id} AND product_name = #{product_name}
     </update>
 
@@ -30,7 +31,7 @@
 
     <!-- 특정 회원의 카트 아이템들 조회 -->
     <select id="getCartItemsByMemberId" resultType="com.example.conquercrux.domain.Cart">
-        SELECT member_id, product_name, product_price, product_quantity
+        SELECT member_id, product_name, product_price, product_quantity, product_stock
         FROM cart
         WHERE member_id = #{member_id}
     </select>

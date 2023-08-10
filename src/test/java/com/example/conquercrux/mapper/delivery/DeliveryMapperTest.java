@@ -19,7 +19,7 @@ class DeliveryMapperTest {
     public void testCreateDelivery() {
         Delivery delivery = new Delivery();
 
-        delivery.setDelivery_address("서울");
+        delivery.setMember_address("서울");
         delivery.setDelivery_memo("배송전 연락 부탁합니다");
         delivery.setDelivery_status("배송중");
         delivery.setRecipient_name("123954838");
@@ -49,7 +49,7 @@ class DeliveryMapperTest {
     public void testUpdateDeliveryAddress() {
         Delivery delivery = mapper.readDelivery(1L);
 
-        delivery.setDelivery_address("부산");
+        delivery.setMember_address("부산");
 
         mapper.updateDelivery(delivery);
     }

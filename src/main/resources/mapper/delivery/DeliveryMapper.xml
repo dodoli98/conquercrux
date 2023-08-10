@@ -4,22 +4,23 @@
 
 <mapper namespace="com.example.conquercrux.mapper.delivery.DeliveryMapper">
 
-    <!--  새로운 상품 등록  -->
+    <!--  새로운 배송 등록  -->
     <insert id="createDelivery" parameterType="com.example.conquercrux.domain.Delivery">
         <selectKey keyProperty="delivery_id" order="BEFORE" resultType="long">
             SELECT NEXTVAL('SEQ_DELIVERY_ID') FROM dual
         </selectKey>
 
-        INSERT INTO delivery (delivery_id, delivery_address ,delivery_status, delivery_memo, recipient_name)
-        VALUES (#{delivery_id}, #{delivery_address} ,#{delivery_status}, #{delivery_memo}, #{recipient_name})
+        INSERT INTO deliver (delivery_id, member_address, delivery_status, delivery_memo, recipient_name)
+        SELECT #{delivery_id}, member_address, #{delivery_status}, #{delivery_memo}, #{recipient_name}
+        FROM member WHERE member_id = #{member_id}
     </insert>
 
-    <!--  아이디를 통해 상품정보 조회  -->
+    <!--  아이디를 통해 배송정보 조회  -->
     <select id="readDelivery" resultType="com.example.conquercrux.domain.Delivery">
         SELECT * FROM delivery WHERE delivery_id = #{delivery_id}
     </select>
 
-    <!-- 아이디를 제외한 모든 정보를 수정 가능하게 변경된 Update 쿼리 -->
+    <!-- 배송 위치에 따라 배송상태 변경, 배송 상태에따른 주소변경 -->
     <update id="updateDelivery" parameterType="com.example.conquercrux.domain.Delivery">
         UPDATE delivery
         SET delivery_status = #{delivery_status},
@@ -28,7 +29,7 @@
     </update>
 
 
-    <!-- 아이디값을 통해 상품정보 삭제 -->
+    <!-- 아이디값을 통해 배송 취소 -->
     <delete id="deleteDelivery" parameterType="com.example.conquercrux.domain.Delivery">
         DELETE FROM delivery WHERE delivery_id = #{delivery_id}
     </delete>

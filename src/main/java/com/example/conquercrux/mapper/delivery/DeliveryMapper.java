@@ -13,7 +13,4 @@ public interface DeliveryMapper {
     int updateDelivery(Delivery delivery);
 
     int deleteDelivery(Long delivery_id);
-
-
-
 }

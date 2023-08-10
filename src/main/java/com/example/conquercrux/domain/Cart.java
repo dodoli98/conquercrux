@@ -11,4 +11,6 @@ public class Cart {
     private int product_price;
 
     private int product_quantity;
+
+    private int product_stock;
 }
