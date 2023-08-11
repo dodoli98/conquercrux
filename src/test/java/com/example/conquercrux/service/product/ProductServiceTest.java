@@ -20,7 +20,7 @@ class ProductServiceTest {
 
         Product product = new Product();
 
-        product.setProduct_name("상품예시1");
+        product.setProduct_name("1234455");
         product.setProduct_price(9898);
         product.setProduct_stock(100);
 

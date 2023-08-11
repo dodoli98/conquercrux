@@ -10,8 +10,8 @@
             SELECT NEXTVAL('SEQ_DELIVERY_ID') FROM dual
         </selectKey>
 
-        INSERT INTO deliver (delivery_id, member_address, delivery_status, delivery_memo, recipient_name)
-        SELECT #{delivery_id}, member_address, #{delivery_status}, #{delivery_memo}, #{recipient_name}
+        INSERT INTO delivery (delivery_id, member_id, member_address, delivery_status, delivery_memo, recipient_name)
+        SELECT #{delivery_id}, #{member_id}, member_address, #{delivery_status}, #{delivery_memo}, #{recipient_name}
         FROM member WHERE member_id = #{member_id}
     </insert>
 
@@ -24,7 +24,7 @@
     <update id="updateDelivery" parameterType="com.example.conquercrux.domain.Delivery">
         UPDATE delivery
         SET delivery_status = #{delivery_status},
-        delivery_address = #{delivery_address}
+        member_address = #{member_address}
         WHERE delivery_id = #{delivery_id}
     </update>
 
