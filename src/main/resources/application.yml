@@ -33,3 +33,7 @@ logging:
       resultsettable: INFO
       sqlonly: OFF
       sqltiming: INFO
+
+jwt:
+  token:
+    secret: "secretKey"
