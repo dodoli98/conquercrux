@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+<form th:action="@{/update_product}" method="post" id="product">
+    <input type="hidden" name="product_id" th:value="${product.product_id}" />
+    <input type="text" name="product_name" placeholder="product_name">
+    <input type="text" name="product_price" placeholder="product_price">
+
+    <!-- 제품 타입 select option -->
+    <select name="product_type">
+        <option value="">product type</option>
+        <option th:value="climbing_utensils">climbing_utensils</option>
+        <option th:value="climbing_shoes">climbing_shoes</option>
+        <option th:value="cloths">cloths</option>
+    </select>
+
+
+    <input type="submit" value="update_product">
+</form>
+
+
+</body>
+</html>

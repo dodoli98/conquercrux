@@ -10,8 +10,8 @@
             SELECT NEXTVAL('SEQ_PRODUCT_ID') FROM dual
         </selectKey>
 
-        INSERT INTO product (product_id, product_name, product_price, product_stock)
-        VALUES (#{product_id}, #{product_name}, #{product_price}, #{product_stock})
+        INSERT INTO product (product_id, product_name, product_price, product_stock, product_type)
+        VALUES (#{product_id}, #{product_name}, #{product_price}, #{product_stock}, #{product_type})
     </insert>
 
 
@@ -25,7 +25,8 @@
     <update id="updateProduct" parameterType="com.example.conquercrux.domain.Product">
         UPDATE product
         SET product_name = #{product_name},
-        product_price = #{product_price}
+        product_price = #{product_price},
+        product_type = #{product_type}
         WHERE product_id = #{product_id}
     </update>
 

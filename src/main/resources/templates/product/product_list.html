@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+  <div id="table_wrapper">
+    <table id="list">
+      <thead>
+      <tr>
+        <th>product_name</th>
+        <th>product_price</th>
+        <th>stock</th>
+        <th>product_type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product : ${productList}">
+        <td>
+          <a th:text="${product.product_name}" th:href="@{/read_product(id=${product.product_id})}"></a>
+        </td>
+        <td th:text="${product.product_price}"></td>
+        <td th:text="${product.product_stock}"></td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p >
+    <button><a th:href="@{/register_product}">register_product</a></button>
+  </p>
+
+
+
+</body>
+</html>

@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <title>Title</title>
+    <style>
+        .img-container {
+            display: flex;
+            gap: 10px; /* 간격 조절을 위해 추가 */
+        }
+
+        .img > img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
-
     <button><a th:href="@{/login}">login</a></button>
     <button><a th:href="@{/mypage}">My page</a></button>
+    <button><a th:href="@{/cart}">Cart</a></button>
+    <button><a th:href="@{/product_list}">product_list</a></button>
+    <button><a th:href="@{/climbing_utensils}">climbing_utensils</a></button>
+    <button><a th:href="@{/climbing_shoes}">climbing_shoes</a></button>
+    <button><a th:href="@{/cloths}">cloths</a></button>
 
+    <div class="img-container">
+        <div class="img">
+            <img th:src="@{/img/boot.png}" />
+        </div>
 
+        <div class="img">
+            <img th:src="@{/img/css.png}" />
+        </div>
 
+        <div class="img">
+            <img th:src="@{/img/jsp.png}" />
+        </div>
+    </div>
 </body>
 </html>

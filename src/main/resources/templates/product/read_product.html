@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body>
+<div id="container">
+    <div>
+        <ul>
+            <li>product_name: <span th:text="${product.product_name}"></span></li>
+            <li>product_price: <span th:text="${product.product_price}"></span></li>
+            <li>product_stock: <span th:text="${product.product_stock}"></span></li>
+        </ul>
+
+        <div id="button">
+            <p>
+                [<a th:href="@{/product_list}">Back to List</a>]
+            </p>
+            <p>
+                [<a th:href="@{/update_product(id=${product.product_id})}">Update product</a>]
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

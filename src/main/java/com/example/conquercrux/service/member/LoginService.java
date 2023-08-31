@@ -8,5 +8,5 @@ public interface LoginService {
      * @param member_password   로그인할 아이디의 패스워드
      * @return                  로그인 성공여부
      */
-    boolean checkCredentials(String member_id, String member_password);
+    String checkCredentials(String member_id, String member_password);
 }
