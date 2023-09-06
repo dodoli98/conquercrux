@@ -24,6 +24,11 @@
 
         </div>
 
+        <form method="post" th:action="@{/delete_product(id=${product.product_id})}">
+            <input type="submit" value="delete product">
+        </form>
+
+
     </div>
 </div>
 

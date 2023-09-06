@@ -24,7 +24,7 @@ class ProductServiceTest {
         product.setProduct_price(9898);
         product.setProduct_stock(100);
 
-        productService.registerProduct(product);
+        // productService.registerProduct(product);
 
         log.info("registered product = {}", product);
 

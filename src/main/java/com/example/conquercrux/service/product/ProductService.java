@@ -1,7 +1,9 @@
 package com.example.conquercrux.service.product;
 
 import com.example.conquercrux.domain.Product;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ProductService {
@@ -10,7 +12,7 @@ public interface ProductService {
      *
      * @param product    등록할 상품의 정보
      */
-    void registerProduct(Product product);
+    void registerProduct(Product product, MultipartFile multipartFile) throws IOException;
 
     /**
      * READ : 상품의 아이디를 통해 상품 불러오기

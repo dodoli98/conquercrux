@@ -13,4 +13,6 @@ public class Product {
     private int product_stock;
 
     private String product_type;
+
+    private byte[] product_image;
 }

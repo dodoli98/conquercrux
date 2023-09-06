@@ -4,7 +4,7 @@
 
 <mapper namespace="com.example.conquercrux.mapper.product.ProductMapper">
 
-    <!--  새로운 상품 등록  -->
+    <!--  새로운 상품 등록
     <insert id="registerProduct" parameterType="com.example.conquercrux.domain.Product">
         <selectKey keyProperty="product_id" order="BEFORE" resultType="long">
             SELECT NEXTVAL('SEQ_PRODUCT_ID') FROM dual
@@ -13,7 +13,17 @@
         INSERT INTO product (product_id, product_name, product_price, product_stock, product_type)
         VALUES (#{product_id}, #{product_name}, #{product_price}, #{product_stock}, #{product_type})
     </insert>
+    -->
 
+    <!-- 새로운 상품 등록 -->
+    <insert id="registerProduct" parameterType="com.example.conquercrux.domain.Product">
+        <selectKey keyProperty="product_id" order="BEFORE" resultType="long">
+            SELECT NEXTVAL('SEQ_PRODUCT_ID') FROM dual
+        </selectKey>
+
+        INSERT INTO product (product_id, product_name, product_price, product_stock, product_type, product_image)
+        VALUES (#{product_id}, #{product_name}, #{product_price}, #{product_stock}, #{product_type},#{product_image, jdbcType=BLOB})
+    </insert>
 
 
     <!--  아이디를 통해 상품정보 조회  -->
@@ -26,7 +36,8 @@
         UPDATE product
         SET product_name = #{product_name},
         product_price = #{product_price},
-        product_type = #{product_type}
+        product_type = #{product_type},
+        product_image = #{product_image}
         WHERE product_id = #{product_id}
     </update>
 

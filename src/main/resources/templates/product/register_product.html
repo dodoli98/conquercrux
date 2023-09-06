@@ -11,10 +11,33 @@
     <title>insert_product</title>
 </head>
 <body>
-    <form th:action="@{/register_product}" method="post" id="register_product">
+
+<!--    <form th:action="@{/register_product}" method="post" id="register_product">-->
+<!--        <input type="text" name="product_name" placeholder="product_name">-->
+<!--        <input type="text" name="product_price" placeholder="product_price">-->
+<!--        <input type="text" name="product_stock" placeholder="product_stock">-->
+
+<!--        &lt;!&ndash; 제품 타입 select option &ndash;&gt;-->
+<!--        <select name="product_type">-->
+<!--            <option value="">product type</option>-->
+<!--            <option th:value="climbing_utensils">climbing_utensils</option>-->
+<!--            <option th:value="climbing_shoes">climbing_shoes</option>-->
+<!--            <option th:value="cloths">cloths</option>-->
+<!--        </select>-->
+
+
+<!--        <input type="submit" value="register_product">-->
+<!--    </form>-->
+
+
+    <form th:action="@{/register_product}" method="post" id="register_product" enctype="multipart/form-data">
         <input type="text" name="product_name" placeholder="product_name">
         <input type="text" name="product_price" placeholder="product_price">
         <input type="text" name="product_stock" placeholder="product_stock">
+
+        <!--  제품사진 업로드   -->
+        <input type="file" name="file" accept="image/*">
+
 
         <!-- 제품 타입 select option -->
         <select name="product_type">
@@ -27,6 +50,7 @@
 
         <input type="submit" value="register_product">
     </form>
+
 
 
 </body>
