@@ -39,28 +39,17 @@ public class ProductController {
     }
 
 
-
-
     @GetMapping("/product_list")
     public String getProductList(Model model) {
-
-        List<Product> productList = productService.getProduct();
-        model.addAttribute("productList", productList);
-
         log.info("productController#getProduct()");
 
+        List<Product> productList = productService.getProduct();
+
+        model.addAttribute("productList", productList);
 
         return "/product/product_list";
     }
 
-/*
-    @PostMapping("/register_product")
-    public String registerProduct(Product product, RedirectAttributes redirectAttributes) {
-        productService.registerProduct(product);
-
-        return "redirect:/product_list";
-
- */
 
     @PostMapping("/register_product")
     public String registerProduct(Product product, RedirectAttributes redirectAttributes,
@@ -96,6 +85,7 @@ public class ProductController {
 
         return "redirect:/product_list";
     }
+
 
 
 

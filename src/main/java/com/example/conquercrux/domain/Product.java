@@ -15,4 +15,6 @@ public class Product {
     private String product_type;
 
     private byte[] product_image;
+
+    private String product_base64_image;
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -54,10 +55,27 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.deleteProduct(product_id) == 1;
     }
 
+    /*
     @Override
     public List<Product> getProduct() {
         log.info("ProductService.getProductList");
 
         return productMapper.getProduct();
+    }
+
+     */
+
+    @Override
+    public List<Product> getProduct() {
+        List<Product> products = productMapper.getProduct();
+        for (Product product : products) {
+            // 이미지 데이터를 BASE64로 인코딩하여 설정
+            byte[] imageBytes = product.getProduct_image(); // 이미지 데이터 가져오기
+            if (imageBytes != null) {
+                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                product.setProduct_base64_image(base64Image); // Product 객체에 BASE64 이미지 설정
+            }
+        }
+        return products;
     }
 }
