@@ -11,7 +11,7 @@ public interface ProductMapper {
     // CREATE
     void registerProduct(Product product);
 
-    // READ
+    // READ : id
     Product readProduct(Long product_id);
 
     // UPDATE
@@ -22,4 +22,8 @@ public interface ProductMapper {
 
     // 모든 상품 LIST
     List<Product> getProduct();
+
+    // 선택된 타입의 상품 LIST
+    List<Product> getProductByType(String product_type);
+
 }

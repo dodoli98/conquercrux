@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <title>Title</title>
+    <style>
+        /* 스타일을 여기에 추가하세요 */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-card {
+            width: calc(33.33% - 20px); /* 각 상품 카드의 너비 설정, 3개씩 표시 */
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<p>Product Type: <span th:text="${productType}"></span></p>
+
+<div class="product-container">
+    <!-- Thymeleaf 반복문을 사용하여 상품을 반복적으로 표시 -->
+    <div th:each="product : ${productList}" class="product-card">
+        <img th:src="'data:image/jpeg;base64,' + ${product.product_base64_image}" class="product-image" alt="Product Image"/>
+        <h3 th:text="${product.product_name}"></h3>
+        <p th:text="${product.product_price}"></p>
+    </div>
+</div>
+</body>
+</html>

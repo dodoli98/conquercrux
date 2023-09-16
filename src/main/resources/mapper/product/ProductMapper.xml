@@ -31,6 +31,7 @@
         SELECT * FROM product WHERE product_id = #{product_id}
     </select>
 
+
     <!-- 아이디를 제외한 모든 정보를 수정 가능하게 변경된 Update 쿼리 -->
     <update id="updateProduct" parameterType="com.example.conquercrux.domain.Product">
         UPDATE product
@@ -52,6 +53,12 @@
         <![CDATA[
             SELECT * FROM product
         ]]>
+    </select>
+
+    <!-- 선택된 타입의 상품 리스트를 가져오는 쿼리 -->
+    <select id="getProductByType" resultType="com.example.conquercrux.domain.Product">
+        SELECT * FROM product
+        WHERE product_type = #{product_type}
     </select>
 
 </mapper>

@@ -21,6 +21,7 @@ public interface ProductService {
      */
     Product readProduct(Long product_id);
 
+
     /**
      * UPDATE : 상품정보 수정
      *
@@ -39,4 +40,11 @@ public interface ProductService {
      * 모든 상품 레코드 반환
      */
     List<Product> getProduct();
+
+    /**
+     * 선택된 타입의 상품 LIST 반환
+     *
+     * @param product_type  반환할 상품들의 타입
+     */
+    List<Product> getProductByType(String product_type);
 }

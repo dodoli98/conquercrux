@@ -37,7 +37,6 @@ public class ProductServiceImpl implements ProductService {
     public Product readProduct(Long product_id) {
         log.info("ProductService.registerProduct > product = {}", product_id);
 
-
         return productMapper.readProduct(product_id);
     }
 
@@ -77,5 +76,21 @@ public class ProductServiceImpl implements ProductService {
             }
         }
         return products;
+    }
+
+    @Override
+    public List<Product> getProductByType(String product_type) {
+        List<Product> products = productMapper.getProductByType(product_type);
+
+        for (Product product : products) {
+            // 이미지 데이터를 BASE64로 인코딩하여 설정
+            byte[] imageBytes = product.getProduct_image(); // 이미지 데이터 가져오기
+            if (imageBytes != null) {
+                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                product.setProduct_base64_image(base64Image); // Product 객체에 BASE64 이미지 설정
+            }
+        }
+        return products;
+
     }
 }
