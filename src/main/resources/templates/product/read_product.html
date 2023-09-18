@@ -14,6 +14,8 @@
             <li>product_stock: <span th:text="${product.product_stock}"></span></li>
         </ul>
 
+
+
         <div id="button">
             <p>
                 [<a th:href="@{/product_list}">Back to List</a>]
@@ -27,6 +29,13 @@
         <form method="post" th:action="@{/delete_product(id=${product.product_id})}">
             <input type="submit" value="delete product">
         </form>
+        <form method="post" th:action="@{/add_to_cart(id=${product.product_id})}">
+            <input type="number" id="quantity" name="quantity" min="1" max="10" th:value="1" />
+            <input type="submit" value="add to cart">
+        </form>
+
+
+
 
 
     </div>

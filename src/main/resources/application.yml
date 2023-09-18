@@ -37,3 +37,8 @@ logging:
 jwt:
   token:
     secret: "secretKey"
+
+server:
+  servlet:
+    session:
+      timeout: 1800 # 세션 유효 시간을 초 단위로 설정합니다 (예: 1800초 = 30분)

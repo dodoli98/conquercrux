@@ -8,7 +8,16 @@
 
 </head>
 <body>
-    <button><a th:href="@{/login}">login</a></button>
+
+    <!-- 세션에서 member_id를 가져옵니다. -->
+    <div th:if="${session.member_id}">
+        <p>Welcome, <span th:text="${session.member_id}"></span></p>
+    </div>
+    <div th:unless="${session.member_id}">
+        <!-- 로그인 버튼을 출력합니다. -->
+        <button><a th:href="@{/login}">Login</a></button>
+    </div>
+    <button><a th:href="@{/logout}">logout</a></button>
     <button><a th:href="@{/mypage}">My page</a></button>
     <button><a th:href="@{/cart}">Cart</a></button>
     <button><a th:href="@{/product_list}">product_list</a></button>

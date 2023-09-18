@@ -6,7 +6,24 @@
     <title>Cart</title>
 </head>
 <body>
-
+    <div id="table_wrapper">
+        <table id="list">
+            <thead>
+            <tr>
+                <th>product_name</th>
+                <th>product_price</th>
+                <th>product_quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartList : ${cartList}">
+                <td th:text="${cartList.product_name}"></td>
+                <td th:text="${cartList.product_price}"></td>
+                <td th:text="${cartList.product_quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 

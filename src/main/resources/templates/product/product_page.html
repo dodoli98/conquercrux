@@ -32,7 +32,7 @@
     <!-- Thymeleaf 반복문을 사용하여 상품을 반복적으로 표시 -->
     <div th:each="product : ${productList}" class="product-card">
         <img th:src="'data:image/jpeg;base64,' + ${product.product_base64_image}" class="product-image" alt="Product Image"/>
-        <h3 th:text="${product.product_name}"></h3>
+        <a th:text="${product.product_name}" th:href="@{/read_product(id=${product.product_id})}"></a>
         <p th:text="${product.product_price}"></p>
     </div>
 </div>
