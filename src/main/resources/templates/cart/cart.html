@@ -4,27 +4,136 @@
     <meta charset="UTF-8">
     <link th:href="@{/css/reset.css}" rel="stylesheet"/>
     <title>Cart</title>
+    <style>
+        table_wrapper {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* 모달 스타일 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $(".edit-button").click(function () {
+            var productName = $(this).data("product-name");
+            selectedIndex = $(".edit-button").index(this); // 선택한 버튼의 인덱스를 selectedIndex 변수에 저장
+            $("#productName").val(productName); // <input> 요소의 value 값을 설정
+            $("#myModal").css("display", "block");
+        });
+
+
+        $(".close").click(function () {
+            $("#myModal").css("display", "none");
+        });
+
+        $("#updateButton").click(function (e) {
+            e.preventDefault(); // 폼 기본 동작 방지
+
+            var productQuantity = $("#product_quantity").val();
+
+            // Ajax 요청 보내기
+            $.ajax({
+                type: "POST",
+                url: "/updateCart",
+                data: {
+                    productName: $("#productName").val(),
+                    productQuantity: productQuantity
+                },
+                success: function (response) {
+                    // 모달 닫기
+                    $("#myModal").css("display", "none");
+
+            
+                   // 선택한 행의 수량 업데이트
+                   $(".quantity").eq(selectedIndex).text(productQuantity);
+                },
+                error: function (error) {
+                    console.error("Ajax 요청이 실패했습니다.", error);
+                    alert("오류가 발생했습니다. 다시 시도해주세요."); 
+                }
+            });
+        });
+    });
+</script>
+
 </head>
 <body>
-    <div id="table_wrapper">
-        <table id="list">
-            <thead>
-            <tr>
-                <th>product_name</th>
-                <th>product_price</th>
-                <th>product_quantity</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="cartList : ${cartList}">
-                <td th:text="${cartList.product_name}"></td>
-                <td th:text="${cartList.product_price}"></td>
-                <td th:text="${cartList.product_quantity}"></td>
-            </tr>
-            </tbody>
-        </table>
+<div id="table_wrapper" >
+    <table id="list">
+        <thead >
+        <tr>
+            <th>product_name</th>
+            <th>product_price</th>
+            <th>product_quantity</th>
+            <th>delete from cart</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cartList, stat : ${cartList}">
+            <td th:text="${cartList.product_name}"></td>
+            <td th:text="${cartList.product_price}"></td>
+            <td>
+                <span class="quantity" th:text="${cartList.product_quantity}"></span>
+                <button class="edit-button" th:attr="data-product-name=${cartList.product_name}">주문 수정</button>
+            </td>
+            </td>
+            <td>
+                <a th:href="@{/deleteCartItem(product_name=${cartList.product_name})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 모달 다이얼로그 -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form method="post" th:action="@{/updateCart}">
+            <input type="hidden" id="productName" name="productName" value="">
+            <label for="product_quantity">수량 선택:</label>
+            <select id="product_quantity" name="product_quantity">
+                <option th:each="i : ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>
+            </select>
+            <input type="submit" value="수량 저장" id="updateButton">
+        </form>
     </div>
 
+</div>
 
 
 </body>
