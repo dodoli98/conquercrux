@@ -17,4 +17,7 @@ public interface CartMapper {
     int deleteCartItem(String member_id, String product_name);
 
     List<Cart> getCartItemsByMemberId(String member_id);
+
+    // 주문 금액을 구하는 메서드
+    int getMemberTotalAmount(String member_id);
 }

@@ -49,4 +49,11 @@ public class CartServiceImpl implements CartService {
 
         return cartMapper.getCartItemsByMemberId(member_id);
     }
+
+    @Override
+    public int getMemberTotalAmount(String member_id) {
+        log.info("getMemberTotalAmount");
+
+        return cartMapper.getMemberTotalAmount(member_id);
+    }
 }

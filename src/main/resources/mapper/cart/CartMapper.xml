@@ -23,6 +23,7 @@
         WHERE member_id = #{member_id} AND product_name = #{product_name}
     </update>
 
+
     <!-- 카트 아이템 삭제 -->
     <delete id="deleteCartItem" parameterType="java.util.Map">
         DELETE FROM cart
@@ -31,9 +32,18 @@
 
     <!-- 특정 회원의 카트 아이템들 조회 -->
     <select id="getCartItemsByMemberId" resultType="com.example.conquercrux.domain.Cart">
-        SELECT member_id, product_name, product_price, product_quantity, product_stock
+        SELECT member_id, product_name, product_price, product_quantity, product_stock, total_price
         FROM cart
         WHERE member_id = #{member_id}
     </select>
+
+    <!-- member_id로 식별하여 member별 모든 상품의 가격을 구하는 sql -->
+    <select id="getMemberTotalAmount" resultType="int">
+        SELECT COALESCE(SUM(product_price * product_quantity), 0) AS total_amount
+        FROM Cart
+        WHERE member_id = #{member_id}
+    </select>
+
+
 
 </mapper>

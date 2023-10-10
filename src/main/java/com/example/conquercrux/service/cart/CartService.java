@@ -38,4 +38,11 @@ public interface CartService {
      * @param member_id
      */
     List<Cart> getCartItemsByMemberId(String member_id);
+
+    /**
+     * 멤버별 상품 가격 총액
+     *
+     * @return
+     */
+    int getMemberTotalAmount(String member_id);
 }

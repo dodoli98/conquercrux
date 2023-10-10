@@ -13,4 +13,10 @@ public class Cart {
     private int product_quantity;
 
     private int product_stock;
+
+    // 각 상품의 가격 * 상품 수량
+    private int total_price;
+
+    // 각 member 의 total_price 의 총합
+    private int total_amount;
 }

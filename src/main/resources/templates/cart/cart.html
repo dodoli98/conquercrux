@@ -100,6 +100,7 @@
             <th>product_price</th>
             <th>product_quantity</th>
             <th>delete from cart</th>
+            <th>total_price</th>
         </tr>
         </thead>
         <tbody>
@@ -114,6 +115,7 @@
             <td>
                 <a th:href="@{/deleteCartItem(product_name=${cartList.product_name})}">Delete</a>
             </td>
+            <td th:text="${cartList.total_price}"></td>
         </tr>
         </tbody>
     </table>
@@ -134,6 +136,11 @@
     </div>
 
 </div>
+
+<div id="totalAmount">Total Amount: <span id="totalAmountValue" th:text="${total_amount}"></span></div> <!-- total_amount 표시 -->
+
+<button><a th:href="@{/payment}">Payment Page</a></button>
+
 
 
 </body>

@@ -12,6 +12,16 @@ public class Order {
 
     private String member_id;
 
+    // 상품 정보
+    private String product_name;
+
+    private int product_price;
+
+    private int product_quantity;
+
+    private int product_stock;
+
+    // 결제 금액
     private int total_amount;
 
 }

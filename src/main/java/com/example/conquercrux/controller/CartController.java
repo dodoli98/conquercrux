@@ -50,6 +50,10 @@ public class CartController {
         String member_id = (String) session.getAttribute("member_id");
         log.info("cart Controller - member_id = {}", member_id);
         if (member_id != null) {
+
+            int total_amount = cartService.getMemberTotalAmount(member_id);
+            model.addAttribute("total_amount", total_amount);
+
             List<Cart> cartList =  cartService.getCartItemsByMemberId(member_id);
             model.addAttribute("cartList", cartList);
             return "cart/cart";
