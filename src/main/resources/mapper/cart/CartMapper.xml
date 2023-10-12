@@ -32,7 +32,7 @@
 
     <!-- 특정 회원의 카트 아이템들 조회 -->
     <select id="getCartItemsByMemberId" resultType="com.example.conquercrux.domain.Cart">
-        SELECT member_id, product_name, product_price, product_quantity, product_stock, total_price
+        SELECT member_id, product_name, product_price, product_quantity, product_stock
         FROM cart
         WHERE member_id = #{member_id}
     </select>
@@ -43,6 +43,7 @@
         FROM Cart
         WHERE member_id = #{member_id}
     </select>
+
 
 
 

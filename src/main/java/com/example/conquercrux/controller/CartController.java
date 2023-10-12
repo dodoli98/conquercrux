@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -93,5 +95,17 @@ public class CartController {
 
         String jsonResponse = "{\"message\": \"수량이 업데이트되었습니다.\", \"updatedQuantity\": " + productQuantity + "}";
         return jsonResponse;
+    }
+
+    @GetMapping("/getTotalAmount")
+    @ResponseBody
+    public String updateTotalAmount(HttpSession session) {
+        log.info("-===================updateTotalAmount===========================");
+        String member_id = (String) session.getAttribute("member_id");
+
+        int totalAmount = cartService.getMemberTotalAmount(member_id);
+
+        // totalAmount를 문자열로 변환하여 반환
+        return String.valueOf(totalAmount);
     }
 }

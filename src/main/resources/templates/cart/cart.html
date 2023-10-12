@@ -47,6 +47,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
+    // 총 가격 업데이트 함수
+    function updateTotalAmount() {
+        $.get("/getTotalAmount", function (response) {
+            $("#totalAmountValue").text(response); // response에서 totalAmount만 가져올 것이므로 .totalAmount가 아님
+        });
+    }
     $(document).ready(function () {
         $(".edit-button").click(function () {
             var productName = $(this).data("product-name");
@@ -58,6 +65,8 @@
 
         $(".close").click(function () {
             $("#myModal").css("display", "none");
+
+
         });
 
         $("#updateButton").click(function (e) {
@@ -77,9 +86,10 @@
                     // 모달 닫기
                     $("#myModal").css("display", "none");
 
-            
                    // 선택한 행의 수량 업데이트
                    $(".quantity").eq(selectedIndex).text(productQuantity);
+
+                   updateTotalAmount(); // 총 가격 업데이트 요청
                 },
                 error: function (error) {
                     console.error("Ajax 요청이 실패했습니다.", error);
@@ -100,7 +110,6 @@
             <th>product_price</th>
             <th>product_quantity</th>
             <th>delete from cart</th>
-            <th>total_price</th>
         </tr>
         </thead>
         <tbody>
@@ -115,7 +124,6 @@
             <td>
                 <a th:href="@{/deleteCartItem(product_name=${cartList.product_name})}">Delete</a>
             </td>
-            <td th:text="${cartList.total_price}"></td>
         </tr>
         </tbody>
     </table>
@@ -137,7 +145,9 @@
 
 </div>
 
-<div id="totalAmount">Total Amount: <span id="totalAmountValue" th:text="${total_amount}"></span></div> <!-- total_amount 표시 -->
+<!-- 주문시 총액 표시 -->
+<div id="totalAmount">Total Amount: <span id="totalAmountValue" th:text="${total_amount}"></span></div>
+
 
 <button><a th:href="@{/payment}">Payment Page</a></button>
 
