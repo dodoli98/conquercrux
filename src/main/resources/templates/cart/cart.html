@@ -98,13 +98,14 @@
             });
         });
     });
-</script>
+    </script>
 
 </head>
 <body>
+
 <div id="table_wrapper" >
     <table id="list">
-        <thead >
+        <thead>
         <tr>
             <th>product_name</th>
             <th>product_price</th>
@@ -119,7 +120,6 @@
             <td>
                 <span class="quantity" th:text="${cartList.product_quantity}"></span>
                 <button class="edit-button" th:attr="data-product-name=${cartList.product_name}">주문 수정</button>
-            </td>
             </td>
             <td>
                 <a th:href="@{/deleteCartItem(product_name=${cartList.product_name})}">Delete</a>
@@ -150,7 +150,6 @@
 
 
 <button><a th:href="@{/payment}">Payment Page</a></button>
-
 
 
 </body>

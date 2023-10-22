@@ -5,26 +5,158 @@
     <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <title>Title</title>
     <link th:href="@{/css/home/home.css}" rel="stylesheet" />
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
 
+        /* --------------product_list-------------- */
+        #product_list {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        #product_list > div {
+            padding-top: 1em;
+            padding-right: 1em;
+        }
+        /* --------------header-------------- */
+
+        #header {
+            font-size: 1em;
+            width: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+            overflow: hidden;
+
+        }
+        
+        .login > ul {
+            padding-top: 1em;
+        }
+
+        .login > ul > li {
+            display: inline;
+            margin-right: 1em;
+        }
+
+
+
+
+        /* --------------logo-------------- */
+
+        #logowrapper{
+            display: flex;
+            justify-content: center;
+        }
+
+        #logo{
+            font-size: 3em;
+            font-weight: 500;
+            padding: 0.5em;
+
+        }
+
+        /* --------------nav-------------- */
+        #nav{
+            display: flex;
+            justify-content: center;
+        }
+
+        #nav > div > ul > li {
+            display: inline;
+            margin: 0em 3em 0em 3em;
+        }
+
+        /* --------------main-------------- */
+        #content {
+            height: 500px;
+        }
+
+        /* --------------footer-------------- */
+        #footer {
+            text-align: center;
+        }
+
+        #footer > div {
+            box-sizing: border-box;
+            padding: 1em;
+
+            background-color: lightgray;
+        }
+
+        .footer_child:first-child {
+            margin-bottom: 1em;
+        }
+
+
+      
+       
+    </style>
 </head>
 <body>
 
-    <!-- 세션에서 member_id를 가져옵니다. -->
-    <div th:if="${session.member_id}">
-        <p>Welcome, <span th:text="${session.member_id}"></span></p>
+    <!-- 
+    <div id="product_list" th:if="${session.member_id == 123}">
+        <div>
+            <a th:href="@{/product_list}">상품관리(관리자)</a>
+        </div>
     </div>
-    <div th:unless="${session.member_id}">
-        <!-- 로그인 버튼을 출력합니다. -->
-        <button><a th:href="@{/login}">Login</a></button>
+     -->
+
+     <!-- 로그인, 로그아웃 -->
+     <header id="header">
+        <!-- 세션에서 member_id를 가져옵니다. -->
+        <div th:if="${session.member_id}" class="login">
+            <ul>
+                <li><a th:href="@{/mypage}">마이페이지</a></li>
+                <li><a th:href="@{/cart}">장바구니</a></li>
+                <li><a th:href="@{/logout}">로그아웃</a></li>
+            </ul>
+        </div>
+        <div th:unless="${session.member_id}" class="login">
+        <ul>
+            <li><a th:href="@{/login}">로그인</a></li>
+        </ul>
+            <!-- 로그인 버튼을 출력합니다. -->
+        </div>
+     </header>
+     
+    <!-- 메인 로고 -->
+    <div id="logowrapper">
+        <div id="logo">
+            <h1>Conquer Crux</h1>
+        </div>
     </div>
-    <button><a th:href="@{/logout}">logout</a></button>
-    <button><a th:href="@{/mypage}">My page</a></button>
-    <button><a th:href="@{/cart}">Cart</a></button>
-    <button><a th:href="@{/product_list}">product_list</a></button>
-    <button><a th:href="@{/product_page/climbing_utensils}">climbing_utensils</a></button>
-    <button><a th:href="@{/product_page/climbing_shoes}">climbing_shoes</a></button>
-    <button><a th:href="@{/product_page/cloths}">cloths</a></button>
+    
+    <!-- 쇼핑 네비게이션  -->
+    <nav id="nav">
+        <div>
+            <ul>
+                <li><a th:href="@{/product_page/climbing_utensils}">클라이밍 용품</a></li>
+                <li><a th:href="@{/product_page/climbing_shoes}">암벽화</a></li>
+                <li><a th:href="@{/product_page/cloths}">클라이밍 의류</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <!-- 컨텐츠 영역 -->
+    <main id="content">
+        <ul>
+            <li>사진 1</li>
+        </ul>
 
+    </main>
+
+    <footer id="footer">
+        <div>
+            <h3 class="footer_child">Main Footer</h3>
+            <address class="footer_child">Website Url</address>
+        </div>
+    </footer>
+
+   
+    
 </body>
 </html>
