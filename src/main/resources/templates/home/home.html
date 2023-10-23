@@ -106,22 +106,22 @@
      -->
 
      <!-- 로그인, 로그아웃 -->
-     <header id="header">
-        <!-- 세션에서 member_id를 가져옵니다. -->
-        <div th:if="${session.member_id}" class="login">
-            <ul>
-                <li><a th:href="@{/mypage}">마이페이지</a></li>
-                <li><a th:href="@{/cart}">장바구니</a></li>
-                <li><a th:href="@{/logout}">로그아웃</a></li>
-            </ul>
-        </div>
-        <div th:unless="${session.member_id}" class="login">
+    <header id="header">
+    <!-- 세션에서 member_id를 가져옵니다. -->
+    <div th:if="${session.member_id}" class="login">
         <ul>
-            <li><a th:href="@{/login}">로그인</a></li>
+            <li><a th:href="@{/mypage}">마이페이지</a></li>
+            <li><a th:href="@{/cart}">장바구니</a></li>
+            <li><a th:href="@{/logout}">로그아웃</a></li>
         </ul>
-            <!-- 로그인 버튼을 출력합니다. -->
-        </div>
-     </header>
+    </div>
+    <div th:unless="${session.member_id}" class="login">
+    <ul>
+        <li><a th:href="@{/login}">로그인</a></li>
+    </ul>
+        <!-- 로그인 버튼을 출력합니다. -->
+    </div>
+    </header>
      
     <!-- 메인 로고 -->
     <div id="logowrapper">

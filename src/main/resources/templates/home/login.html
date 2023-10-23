@@ -1,20 +1,91 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet" />
     <title>$Title$</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        #login_container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+
+            width: 500px;
+        }
+
+        #wrap {
+            padding: 2em;
+            background-color: white;
+            border-radius: 7px;
+
+            border: 1px solid #ccc;
+
+        }
+
+        #wrap>h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 1em;
+        }
+
+        #wrap>form>input {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+
+            border-radius: 4px;
+        }
+
+        #wrap>form>input:not(:last-child) {
+            border: 1px solid #ccc;
+            margin-bottom: 1em;
+
+        }
+
+        #wrap>form>input:last-child {
+            font-size: 1.3em;
+            background-color: #FAEBD7;
+            line-height: 2;
+        }
+
+        #signup {
+            text-align: center;
+            margin-top: 4em;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>login page</h1>
 
-    <form th:action="@{/login}" method="post" id="login">
-        <input type="text" name="member_id" placeholder="Id">
-        <input type="password" name="member_password" placeholder="Password">
-        <input type="submit" value="Sign-in">
-    </form>
 
-    <button><a th:href="@{/signup}">Register</a></button>
+    <div id="login_container">
+
+        <div id="wrap">
+            <h1>Login</h1>
+
+            <form th:action="@{/login}" method="post" id="login">
+                <input type="text" name="member_id" placeholder="Id">
+                <input type="password" name="member_password" placeholder="Password">
+                <input type="submit" value="로그인">
+            </form>
+            <div id="signup">
+                <a th:href="@{/signup}">회원가입</a>
+            </div>
+        </div>
+
+    </div>
+
+
 
 
 </body>
+
 </html>

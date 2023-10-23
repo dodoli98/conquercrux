@@ -5,36 +5,170 @@
     <link th:href="@{/css/reset.css}" rel="stylesheet"/>
     <title>Title</title>
     <style>
-        /* 스타일을 여기에 추가하세요 */
-        .product-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+      a {
+            text-decoration: none;
+            color: black;
         }
+    /* --------------header-------------- */
 
-        .product-card {
-            width: calc(33.33% - 20px); /* 각 상품 카드의 너비 설정, 3개씩 표시 */
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
+    #header {
+        font-size: 1em;
+        width: 100%;
+        display: flex;
+        flex-direction: row-reverse;
+        overflow: hidden;
 
-        .product-image {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    }
+
+    .login>ul {
+        padding-top: 1em;
+    }
+
+    .login>ul>li {
+        display: inline;
+        margin-right: 1em;
+    }
+
+
+    /* --------------logo-------------- */
+
+    #logowrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    #logo {
+        font-size: 3em;
+        font-weight: 500;
+        padding: 0.5em;
+
+    }
+
+    /* --------------nav-------------- */
+    #nav {
+        display: flex;
+        justify-content: center;
+    }
+
+    #nav>div>ul>li {
+        display: inline;
+        margin: 0em 3em 0em 3em;
+    }
+
+    /* --------------product_type-------------- */
+
+    #product_type {
+        border-bottom: 2px solid #000;
+
+    }
+
+    #product_type>p {
+        font-weight: 900;
+        font-size: 1.4em;
+        padding: 1em;
+    }
+
+    /* --------------product_list-------------- */
+
+    #product_list_box>ul {
+        overflow: hidden;
+        list-style: none;
+    }
+
+    #product_card {
+        float: left;
+
+        width: 20%;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #product_image  > a > img{
+        max-width: 100%;
+        height: 300px;
+        width: auto;
+     }
+
+
+    #product_name {
+        font-weight: bold;
+    }
+
+    #product_price {
+        font-size: 18px;
+    }
+
+    #product_card:hover {
+        transform: scale(1.03);
+    }
+</style>
+
 </head>
-<body>
-<p>Product Type: <span th:text="${productType}"></span></p>
 
-<div class="product-container">
-    <!-- Thymeleaf 반복문을 사용하여 상품을 반복적으로 표시 -->
-    <div th:each="product : ${productList}" class="product-card">
-        <img th:src="'data:image/jpeg;base64,' + ${product.product_base64_image}" class="product-image" alt="Product Image"/>
-        <a th:text="${product.product_name}" th:href="@{/read_product(id=${product.product_id})}"></a>
-        <p th:text="${product.product_price}"></p>
+<body>
+
+<!-- 로그인, 로그아웃 -->
+<header id="header">
+    <!-- 세션에서 member_id를 가져옵니다. -->
+    <div th:if="${session.member_id}" class="login">
+        <ul>
+            <li><a th:href="@{/mypage}">마이페이지</a></li>
+            <li><a th:href="@{/cart}">장바구니</a></li>
+            <li><a th:href="@{/logout}">로그아웃</a></li>
+        </ul>
+    </div>
+    <div th:unless="${session.member_id}" class="login">
+        <ul>
+            <li><a th:href="@{/login}">로그인</a></li>
+        </ul>
+        <!-- 로그인 버튼을 출력합니다. -->
+    </div>
+</header>
+
+<!-- 메인 로고 -->
+<div id="logowrapper">
+    <div id="logo">
+        <a th:href="@{/home}"><h1>Conquer Crux</h1></a>
     </div>
 </div>
+
+<!-- 쇼핑 네비게이션  -->
+<nav id="nav">
+    <div>
+        <ul>
+            <li><a th:href="@{/product_page/climbing_utensils}">클라이밍 용품</a></li>
+            <li><a th:href="@{/product_page/climbing_shoes}">암벽화</a></li>
+            <li><a th:href="@{/product_page/cloths}">클라이밍 의류</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!--  -->
+<div id="product_type">
+    <p><span th:text="${productType}"></span></p>
+</div>
+
+
+<!-- 상품 리스트 -->
+<div id="product_list_box">
+    <ul>
+        <li th:each="product : ${productList}" id="product_card">
+            <div id="list-wrapper">
+                <div id="product_image">
+                    <a th:href="@{/read_product(id=${product.product_id})}">
+                        <img th:src="'data:image/jpeg;base64,' + ${product.product_base64_image}" alt="Product Image" />
+                    </a>
+                </div>
+                <div id="product_name">
+                    <a th:text="${product.product_name}" th:href="@{/read_product(id=${product.product_id})}">\</a>
+                </div>
+                <div id="product_price">
+                    <p th:text="${product.product_price}"></p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>
